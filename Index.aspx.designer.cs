@@ -51,6 +51,33 @@ namespace Task
 		protected global::System.Web.UI.WebControls.Button buttonShowProducts;
 
 		/// <summary>
+		/// Control searchPanel.
+		/// </summary>
+		/// <remarks>
+		/// Campo generado automáticamente.
+		/// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Panel searchPanel;
+
+		/// <summary>
+		/// Control searchText.
+		/// </summary>
+		/// <remarks>
+		/// Campo generado automáticamente.
+		/// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox searchText;
+
+		/// <summary>
+		/// Control searchButton.
+		/// </summary>
+		/// <remarks>
+		/// Campo generado automáticamente.
+		/// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button searchButton;
+
+		/// <summary>
 		/// Control productList.
 		/// </summary>
 		/// <remarks>

@@ -2,9 +2,12 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Web.UI.WebControls;
 
 using Task.Helpers;
+
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Task
 {
@@ -151,15 +154,72 @@ namespace Task
 		}
 
 
-
-
 		private void LoadProducts()
 		{
+			searchPanel.Visible = true;
 			var connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 			using (var sqlConnection = new SqlConnection(connectionString))
 			{
 				sqlConnection.Open();
 				var command = new SqlDataAdapter($"[dbo].[{Enum.GetName(typeof(EnumStoredProcedure), EnumStoredProcedure.ConsultarProductos)}]", sqlConnection);
+				try
+				{
+					var table = new DataTable();
+					command.Fill(table);
+					productList.DataSource = table;
+					productList.DataBind();
+				}
+				catch (Exception)
+				{
+
+					throw;
+				}
+				finally
+				{
+					sqlConnection.Close();
+				}
+
+			}
+		}
+		public void OrderDataProd_Click(object sender, EventArgs e)
+		{
+			searchPanel.Visible = true;
+			var connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+			using (var sqlConnection = new SqlConnection(connectionString))
+			{
+				sqlConnection.Open();
+				var command = new SqlDataAdapter($"SELECT [idProducto],[Producto],[Descripcion],[Valor] " +
+					$"FROM[Test].[dbo].[Productos] " +
+					$"ORDER BY Producto", sqlConnection);
+				try
+				{
+					var table = new DataTable();
+					command.Fill(table);
+					productList.DataSource = table;
+					productList.DataBind();
+				}
+				catch (Exception)
+				{
+
+					throw;
+				}
+				finally
+				{
+					sqlConnection.Close();
+				}
+
+			}
+		}
+		public void OrderDataVal_Click(object sender, EventArgs e)
+		{
+			searchPanel.Visible = true;
+			var connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+			using (var sqlConnection = new SqlConnection(connectionString))
+			{
+				sqlConnection.Open();
+				var command = new SqlDataAdapter($"SELECT [idProducto],[Producto],[Descripcion],[Valor] " +
+					$"FROM[Test].[dbo].[Productos] " +
+					$"ORDER BY Valor", sqlConnection);
 				try
 				{
 					var table = new DataTable();

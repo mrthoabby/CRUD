@@ -26,7 +26,18 @@
                 <div class="form-group mt-4">
                     <asp:Button class="btn btn-outline-success btn-block col-12"  ID="buttonShowProducts" runat="server" Text="Mostrar productos"  OnClick="ShowProducts_Click"/>
                 </div>
+                <asp:Panel ID="searchPanel"  Visible="false" CssClass="row p-3" runat="server">
+                       
+
+                    <div style="display:flex;justify-content:space-around; padding:0 80px">
+                        <asp:TextBox CssClass="form-control col-1" TextMode="Search" ID="searchText" runat="server" />
+                        <asp:Button CssClass="btn btn-outline-danger col-1" ID="searchButton" Text="Filtrar" runat="server" />
+    
+                     </div>
+                        
+                    </asp:Panel>
                 <section style="display:flex;justify-content:center;align-content:center">
+                    
                     <aside>
 
                     <asp:GridView ID="productList" runat="server" BackColor="White" BorderStyle="None" CellPadding="3" AutoGenerateColumns="false" ShowFooter="true" DataKeyNames="idProducto" OnRowCommand="RunCommands_On"
@@ -54,6 +65,10 @@
                             </asp:TemplateField>
                              <%--Template para Producto--%>
                             <asp:TemplateField HeaderText="Producto">
+                                <HeaderTemplate>
+                                    <asp:Label Text="Producto" runat="server" />
+                                     <asp:Button ID="orderButtonProdut" CssClass="btn btn-outline-warning btn-block" Text="Ordenar" runat="server" OnClick="OrderDataProd_Click" />
+                                </HeaderTemplate>
                                 <ItemTemplate>
                                     <asp:Label Text='<%# Eval("[Producto]") %>' runat="server"></asp:Label>
                                 </ItemTemplate>
@@ -78,7 +93,11 @@
                                 </FooterTemplate>
                             </asp:TemplateField>
                              <%--Template para Valor--%>
-                            <asp:TemplateField HeaderText="Valor">
+                            <asp:TemplateField>
+                                <HeaderTemplate>
+                                    <asp:Label Text="Valor" runat="server" />
+                                     <asp:Button ID="orderButtonVal" CssClass="btn btn-outline-warning btn-block" Text="Ordenar" runat="server" OnClick="OrderDataVal_Click" />
+                                </HeaderTemplate>
                                 <ItemTemplate>
                                     <asp:Label Text='<%# Eval("[Valor]") %>' runat="server"></asp:Label>
                                 </ItemTemplate>
