@@ -31,7 +31,7 @@
 
                     <div style="display:flex;justify-content:space-around; padding:0 80px">
                         <asp:TextBox CssClass="form-control col-1" TextMode="Search" ID="searchText" runat="server" />
-                        <asp:Button CssClass="btn btn-outline-danger col-1" ID="searchButton" Text="Filtrar" runat="server" />
+                        <asp:Button CssClass="btn btn-outline-danger col-1" ID="searchButton" Text="Filtrar" runat="server" OnClick="Filtering_Click" />
     
                      </div>
                         

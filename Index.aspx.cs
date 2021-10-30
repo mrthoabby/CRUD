@@ -239,6 +239,35 @@ namespace Task
 
 			}
 		}
+		public void Filtering_Click(object sender, EventArgs e)
+		{
+			searchPanel.Visible = true;
+			var connectionString = ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+			using (var sqlConnection = new SqlConnection(connectionString))
+			{
+				sqlConnection.Open();
+				var command = new SqlDataAdapter($"SELECT [idProducto],[Producto],[Descripcion],[Valor] " +
+					$"FROM[Test].[dbo].[Productos]   WHERE Producto = '{searchText?.Text ?? string.Empty}'"
+					, sqlConnection);
+				try
+				{
+					var table = new DataTable();
+					command.Fill(table);
+					productList.DataSource = table;
+					productList.DataBind();
+				}
+				catch (Exception)
+				{
+
+					throw;
+				}
+				finally
+				{
+					sqlConnection.Close();
+				}
+
+			}
+		}
 		private string GetText(string name) => (productList.FooterRow.FindControl(name) as TextBox)?.Text.Trim() ?? "<Empty>";
 
 
